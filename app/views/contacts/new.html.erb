@@ -1,0 +1,51 @@
+<h1>Contact form</h1>
+
+<%= form_with(model: @form, url: contacts_path) do |f| %>
+  <fieldset>
+    <%= f.fields_for :organization do |organization_fields| %>
+      <h2>Organization details</h2>
+
+      <div>
+      <%= organization_fields.label :name %>
+      <%= organization_fields.text_field :name %>
+      <%= organization_fields.object.errors.full_messages_for(:name) %>
+      </div>
+
+      <div>
+      <%= organization_fields.label :description %>
+      <%= organization_fields.text_field :description %>
+      </div>
+    <% end %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.fields_for :contact do |contact_fields| %>
+      <h2>Contact details</h2>
+
+      <div>
+      <%= contact_fields.label :name %>
+      <%= contact_fields.text_field :name %>
+      <%= contact_fields.object.errors.full_messages_for(:name) %>
+      </div>
+
+      <div>
+      <%= contact_fields.label :email %>
+      <%= contact_fields.text_field :email %>
+      </div>
+    <% end %>
+  </fieldset>
+
+  <fieldset>
+    <%= f.fields_for :deal do |deal_fields| %>
+      <h2>Deal details</h2>
+
+      <div>
+      <%= deal_fields.label :description %>
+      <%= deal_fields.text_field :description %>
+      <%= deal_fields.object.errors.full_messages_for(:description) %>
+      </div>
+    <% end %>
+  </fieldset>
+
+  <%= f.button "Submit" %>
+<% end %>
